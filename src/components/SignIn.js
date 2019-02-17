@@ -13,9 +13,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { withRouter } from 'react-router-dom'
+import {signInTimeout} from '../redux/actions'
 import { connect } from 'react-redux'
-import { addPost , removePost} from "../redux/actions";
-
 
 const styles = theme => ({
     main: {
@@ -49,16 +48,30 @@ const styles = theme => ({
     },
 });
 
-class AddPhotos extends React.Component {
+class SignIn extends React.Component {
+    form = {
+        'username': '',
+        'password': ''
+    }
 
+    constructor(){
+        super()
+        this.handleChange = this.handleChange.bind(this)
+        this.signIn = this.signIn.bind(this)
+    }
 
-    componentDidMount() {
-        console.log('addPhoto!')
-        // this.props.dispatch(addPost(1))
+    handleChange(event) {
+        event.persist();
+        this.form[event.target.name] = event.target.value
+    }
+
+    signIn(event){
+        event.preventDefault();
+        this.props.dispatch(signInTimeout(this.form))
     }
 
     render() {
-        const { classes, index } = this.props;
+        const { classes } = this.props;
         return (
             <main className={classes.main}>
                 <CssBaseline />
@@ -68,44 +81,40 @@ class AddPhotos extends React.Component {
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         初 云
-                </Typography>
+                    </Typography>
                     <form className={classes.form}>
                         <FormControl margin="normal" required fullWidth>
-                            <InputLabel htmlFor="text">URL</InputLabel>
-                            <Input id="text" name="text" autoComplete="text" autoFocus />
+                            <InputLabel htmlFor="email">用户名</InputLabel>
+                            <Input id="email" name="username" autoComplete="email" autoFocus onChange={this.handleChange} />
                         </FormControl>
                         <FormControl margin="normal" required fullWidth>
-                            <InputLabel htmlFor="text">简介</InputLabel>
-                            <Input name="text" type="text" id="text" />
+                            <InputLabel htmlFor="password">密码</InputLabel>
+                            <Input id="password" name="password" type="password" autoComplete="current-password" />
                         </FormControl>
+                        <FormControlLabel
+                            control={<Checkbox value="remember" color="primary" />}
+                            label="记住我"
+                        />
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            onClick={() => {
-                                this.props.dispatch(removePost(1))
-                            }}
+                            onClick={this.signIn}
                         >
-                            新 增
-                    </Button>
+                            登 录
+                        </Button>
                     </form>
                 </Paper>
             </main>
         );
     }
+
 }
 
-AddPhotos.propTypes = {
+SignIn.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-function mapStateToProps(state) {
-    console.log('mapStateToProps', state)
-    return {
-        posts: state
-    }
-}
-
-export default connect(mapStateToProps)(withRouter(withStyles(styles)(AddPhotos)));
+export default connect()(withRouter(withStyles(styles)(SignIn)));

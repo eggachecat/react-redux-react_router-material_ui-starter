@@ -29,7 +29,7 @@ export function authError(error) {
 }
 
 export function signInTimeout({ email, password }) {
-  console.log("action signInTimeout")
+  console.log("action signInTimeout", email, password)
   return function (dispatch) {
     setTimeout(function(){
       localStorage.setItem('token', 'fake token')

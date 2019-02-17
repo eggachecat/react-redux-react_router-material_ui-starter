@@ -1,9 +1,11 @@
 import React from 'react'
+import thunkMiddleware from 'redux-thunk'
 import { render } from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import postReducer from './redux/reducer'
 import Root from './Root'
+import { Provider } from 'react-redux'
 
-const store = createStore(postReducer)
+const store = createStore(postReducer, applyMiddleware(thunkMiddleware))
 
-render(<Root store={store} />, document.getElementById('root'))
+render(<Provider store={store}><Root /></Provider>, document.getElementById('root'))
