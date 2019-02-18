@@ -10,6 +10,8 @@ import { RoomTwoTone } from '@material-ui/icons'
 import { connect } from 'react-redux'
 import Notification from './components/Notification'
 import DicomViewer from './components/dicom-viewer'
+import OHIFViewer from './components/ohif-viewer'
+
 class Root extends React.Component {
   render() {
     const { auth } = this.props
@@ -24,6 +26,8 @@ class Root extends React.Component {
             <Route exact path="/add_photots" component={AddPhotos} />
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/viewer" component={DicomViewer} />
+            <Route exact path="/ohif" component={OHIFViewer} />
+
             {/* <Redirect to="/app" /> */}
           </div>
         </div>
