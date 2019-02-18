@@ -86,8 +86,10 @@ class AppNav extends React.Component {
                                 {title}
                             </Link>
                         </Typography>
+                        <Link component={RouterLink} color="inherit" to="/viewer">浏览器</Link>
+
                         {/* <Button color="inherit">新 增</Button> */}
-                        <Link component={RouterLink} color="inherit" to="/add_photots"> 新 增</Link>
+                        <Link component={RouterLink} color="inherit" to="/add_photots">新增</Link>
                     </Toolbar>
                 </AppBar>
                 <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>

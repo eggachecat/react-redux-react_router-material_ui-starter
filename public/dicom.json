@@ -1,0 +1,13 @@
+{
+  "result": true,
+  "value": {
+    "filmain": "http://localhost:8686/static/",
+    "test1": "",
+    "test2": "",
+    "testDate": {
+      "testDate1": [
+        "example1.dcm"
+      ]
+    }
+  }
+}

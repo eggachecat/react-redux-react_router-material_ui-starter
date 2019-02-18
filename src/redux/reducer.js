@@ -38,7 +38,7 @@ const defaultPosts = [{
 }]
 
 const defaultAuth = {
-  "authenticated": false,
+  "authenticated": true,
   "user": {
     "id": 5,
     "name": "sunao"

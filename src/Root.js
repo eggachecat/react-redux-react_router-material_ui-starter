@@ -9,22 +9,24 @@ import AddPhotos from './components/AddPhotos'
 import { RoomTwoTone } from '@material-ui/icons'
 import { connect } from 'react-redux'
 import Notification from './components/Notification'
+import DicomViewer from './components/dicom-viewer'
 class Root extends React.Component {
   render() {
     const { auth } = this.props
 
     if (auth.authenticated) {
       return <Router>
-          <div>
-            <Notification type="success" message="Hello world" />
-            <Title title="一个demo" />
-            <div style={{ marginTop: '80px' }}>
-              <Route path="/app" component={PhotoWall} />
-              <Route exact path="/add_photots" component={AddPhotos} />
-              <Route exact path="/signin" component={SignIn} />
-              <Redirect to="/app" />
-            </div>
+        <div>
+          <Notification type="success" message="Hello world" />
+          <Title title="一个demo" />
+          <div style={{ marginTop: '80px' }}>
+            <Route path="/app" component={PhotoWall} />
+            <Route exact path="/add_photots" component={AddPhotos} />
+            <Route exact path="/signin" component={SignIn} />
+            <Route exact path="/viewer" component={DicomViewer} />
+            {/* <Redirect to="/app" /> */}
           </div>
+        </div>
       </Router>
     } else {
       return <Router>
